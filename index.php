@@ -106,8 +106,8 @@ $categories = get_all_categories($conn);
 			<div class="pdf-list d-flex flex-wrap">
 				<?php foreach ($books as $book) { ?>
 				<div class="card m-1">
-					<!-- <img src="uploads/cover/<?=$book['cover']?>"
-					     class="card-img-top"> -->
+				<img src="uploads/cover/<?=$book['cover']?>" class="card-img-top" style="height: 200px; width: 150px; display: block; margin-left: auto; margin-right: auto;">
+
 					<div class="card-body">
 						<h5 class="card-title">
 							<?=$book['title']?>
