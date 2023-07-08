@@ -29,9 +29,12 @@ $categories = get_all_categories($conn);
 
     <!-- bootstrap 5 Js bundle CDN-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="css/style.css">
 	<style>
+		body{
+			overflow-x:hidden;
+		}
     @media only screen and (max-width: 767px) {
         .category {
             display: none;
@@ -43,7 +46,30 @@ $categories = get_all_categories($conn);
             color: white !important;
         }
     }
-	
+	.footer {
+   
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: black;
+   color: white;
+   text-align: center;
+   height: 300px;
+   margin-top:30px;
+}
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 15px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 </style>
 </head>
 <body style="background-color:#09144f;">
@@ -60,24 +86,24 @@ $categories = get_all_categories($conn);
         <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
             <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" style="color: white" aria-current="page" href="index.php">முகப்பு</a>
+                    <a class="nav-link active" style="color: white" aria-current="page" href="index.php"><i class="bi bi-house-door-fill"></i> முகப்பு</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="color: white" href="category.php?id=2">மாதஇதழ்கள்</a>
+                    <a class="nav-link" style="color: white" href="category.php?id=2"><i class="bi-journal-bookmark"></i> மாதஇதழ்கள்</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="color: white" href="category.php?id=3">வாரஇதழ்கள்</a>
+                    <a class="nav-link" style="color: white" href="category.php?id=3"><i class="bi bi-book"></i>  வாரஇதழ்கள்</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="color: white" href="">மேலும்</a>
+                    <a class="nav-link" style="color: white" href=""><i class="bi-info-square"></i> மேலும்</a>
                 </li>
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <?php if (isset($_SESSION['user_id'])) { ?>
-                        <a class="nav-link" style="color: white" href="admin.php">கட்டுப்பாட்டகம்</a>
+                        <a class="nav-link" style="color: white" href="admin.php"><i class="bi bi-person-circle"></i> கட்டுப்பாட்டகம்</a>
                     <?php } else { ?>
-                        <a class="nav-link" style="color: white" href="login.php">கட்டுப்பாட்டகம்</a>
+                        <a class="nav-link" style="color: white" href="login.php"><i class="bi bi-person-circle"></i> கட்டுப்பாட்டகம்</a>
                     <?php } ?>
                 </li>
             </ul>
@@ -130,7 +156,7 @@ $categories = get_all_categories($conn);
 							<?=$book['title']?>
 						</h5>
 						<p class="card-text">
-							<i><b>By:
+							<i><b>ஆசிரியர்
 								<?php foreach($authors as $author){ 
 									if ($author['id'] == $book['author_id']) {
 										echo $author['name'];
@@ -164,14 +190,14 @@ $categories = get_all_categories($conn);
 			</div>
 		<?php } ?>
 
-		<div class="category">
+		<div class="category" style="padding-left:25px;">
 			<!-- List of categories -->
 			<div class="list-group">
 				<?php if ($categories == 0){
 					// do nothing
 				}else{ ?>
 				<a href="#"
-				   class="list-group-item list-group-item-action active">Category</a>
+				   class="list-group-item list-group-item-action active"> <i class="bi-journal-bookmark"></i> Category</a>
 				   <?php foreach ($categories as $category ) {?>
 				  
 				   <a href="category.php?id=<?=$category['id']?>"
@@ -181,12 +207,12 @@ $categories = get_all_categories($conn);
 			</div>
 
 			<!-- List of authors -->
-			<div class="list-group mt-5">
+			<div class="list-group mt-5" >
 				<?php if ($authors == 0){
 					// do nothing
 				}else{ ?>
 				<a href="#"
-				   class="list-group-item list-group-item-action active">Author</a>
+				   class="list-group-item list-group-item-action active"><i class="bi bi-pen-fill"></i> Author</a>
 				   <?php foreach ($authors as $author ) {?>
 				  
 				   <a href="author.php?id=<?=$author['id']?>"
@@ -197,5 +223,59 @@ $categories = get_all_categories($conn);
 		</div>
 		</div>
 	</div>
+
+	<div class="footer">
+	<div class="row">
+  <div class="column" >
+  <h6 class="text-uppercase fw-bold"><i class="bi bi-buildings-fill"></i> வெந்தணல்</h6>
+              <hr
+                  class="mb-4 mt-0 d-inline-block mx-auto"
+                  style="width: 60px; background-color: #7c4dff; height: 2px"
+                  />
+              <p>
+                வெந்தணல் இணையதளம் வழியாக சிறந்த படைப்புகள்
+                <br> உங்களிடம் கொண்டு வந்து சேர்க்க படுகிறது
+              </p>
+  </div>
+  <div class="column" >
+  <ul class="navbar-nav mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" style="color: white" aria-current="page" href="index.php"><i class="bi bi-house-door-fill"></i> முகப்பு</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: white" href="category.php?id=2"><i class="bi-journal-bookmark"></i> மாதஇதழ்கள்</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: white" href="category.php?id=3"><i class="bi bi-book"></i>  வாரஇதழ்கள்</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: white" href=""><i class="bi-info-square"></i> மேலும்</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <?php if (isset($_SESSION['user_id'])) { ?>
+                        <a class="nav-link" style="color: white" href="admin.php"><i class="bi bi-person-circle"></i> கட்டுப்பாட்டகம்</a>
+                    <?php } else { ?>
+                        <a class="nav-link" style="color: white" href="login.php"><i class="bi bi-person-circle"></i> கட்டுப்பாட்டகம்</a>
+                    <?php } ?>
+                </li>
+            </ul><br><br>
+			<p>&#10084; Vendanal &#10084;</p>
+  </div>
+  
+  <div class="column" >
+  <h6 class="text-uppercase fw-bold"><i class="bi-house-fill"></i> விலாசம் </h6>
+              <hr
+                  class="mb-4 mt-0 d-inline-block mx-auto"
+                  style="width: 60px; background-color: #7c4dff; height: 2px"
+                  />
+              <p><i class="bi bi-house"></i> வெந்தணல் குடில் </p>
+              <p><i class="bi bi-envelope"></i> vendanal@info.com</p>
+              <p><i class="bi bi-telephone"></i> 90000 00000</p>
+  </div>
+</div>
+
+</div>
 </body>
 </html>
