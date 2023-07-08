@@ -31,49 +31,66 @@ $categories = get_all_categories($conn);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="css/style.css">
-
+	<style>
+    @media only screen and (max-width: 767px) {
+        .category {
+            display: none;
+        }
+		.d-flex {
+            justify-content: center;
+        }
+		.navbar-toggler {
+            color: white !important;
+        }
+    }
+	
+</style>
 </head>
-<body>
+<body style="background-color:#09144f;">
 	<div class="container">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		  <div class="container-fluid">
-		    <a class="navbar-brand" href="index.php">Online Book Store</a>
-		    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-		      <span class="navbar-toggler-icon"></span>
-		    </button>
-		    <div class="collapse navbar-collapse" 
-		         id="navbarSupportedContent">
-		      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-		        <li class="nav-item">
-		          <a class="nav-link active" 
-		             aria-current="page" 
-		             href="index.php">Store</a>
-		        </li>
-		        <li class="nav-item">
-		          <a class="nav-link" 
-		             href="#">Contact</a>
-		        </li>
-		        <li class="nav-item">
-		          <a class="nav-link" 
-		             href="#">About</a>
-		        </li>
-		        <li class="nav-item">
-		          <?php if (isset($_SESSION['user_id'])) {?>
-		          	<a class="nav-link" 
-		             href="admin.php">Admin</a>
-		          <?php }else{ ?>
-		          <a class="nav-link" 
-		             href="login.php">Login</a>
-		          <?php } ?>
+		<div class="logo">
+		<img src="img/venthanal-01.png" style="height: 150px; width: 300px; display: block; margin: 30px auto;" alt="வெந்தணல்">
 
-		        </li>
-		      </ul>
-		    </div>
-		  </div>
-		</nav>
-		<form action="search.php"
-             method="get" 
-             style="width: 100%; max-width: 30rem">
+	</div>
+	<nav class="navbar navbar-expand-lg navbar-light" style="color: white">
+    <div class="container-fluid" >
+        <button class="navbar-toggler" style="color: white"  type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span  class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+            <ul class="navbar-nav mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" style="color: white" aria-current="page" href="index.php">முகப்பு</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: white" href="category.php?id=2">மாதஇதழ்கள்</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: white" href="category.php?id=3">வாரஇதழ்கள்</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: white" href="">மேலும்</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <?php if (isset($_SESSION['user_id'])) { ?>
+                        <a class="nav-link" style="color: white" href="admin.php">கட்டுப்பாட்டகம்</a>
+                    <?php } else { ?>
+                        <a class="nav-link" style="color: white" href="login.php">கட்டுப்பாட்டகம்</a>
+                    <?php } ?>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<hr style="border-top: 3px solid #f8f8f5ef; width:100%;">
+
+<form action="search.php" method="get" style="width: 100%; max-width: 30rem; margin: 0 auto;">
+   
+
+
 
        	<div class="input-group my-5">
 		  <input type="text" 
